@@ -1,0 +1,16 @@
+[
+{
+  "modid": "DrillsAndPumps",
+  "name": "Drills and Pumps",
+  "description": "Adding auto-mining and liquid interaction to Thermal Expansion.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Kintair"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
