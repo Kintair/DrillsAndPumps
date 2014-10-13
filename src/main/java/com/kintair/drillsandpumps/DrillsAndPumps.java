@@ -1,36 +1,34 @@
 package com.kintair.drillsandpumps;
 
+import com.kintair.drillsandpumps.blocks.ModBlocks;
+import com.kintair.drillsandpumps.lib.Constants;
+import com.kintair.drillsandpumps.proxy.CommonProxy;
+
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler; // used in 1.6.2
-import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 
-@Mod(modid="DrillsAndPumps", name="Drills and Pumps", version="0.0.0")
+@Mod(modid=Constants.MODID, name=Constants.MODNAME, version=Constants.VERSION)
 
 public class DrillsAndPumps {
-    // The instance of your mod that Forge uses.
-    @Instance(value = "DrillsAndPumps")
-    public static DrillsAndPumps instance;
-   
-    // Says where the client and server 'proxy' code is loaded.
-    @SidedProxy(clientSide="com.kintair.drillsandpumps.client.ClientProxy", serverSide="com.kintair.drillsandpumps.CommonProxy")
-    public static CommonProxy proxy;
-   
-    @EventHandler // used in 1.6.2
-    public void preInit(FMLPreInitializationEvent event) {
-            // Stub Method
+	@SidedProxy(clientSide = Constants.CLIENT_PROXY_CLASS, serverSide = Constants.SERVER_PROXY_CLASS)
+	public static CommonProxy proxy;
+	
+    @Mod.EventHandler
+    public void preInit(FMLPreInitializationEvent event){
+    	ModBlocks.init();
     }
-   
-    @EventHandler // used in 1.6.2
-    public void load(FMLInitializationEvent event) {
-            proxy.registerRenderers();
+    
+    @Mod.EventHandler
+    public void init(FMLInitializationEvent event){
+    	proxy.registerTileEntities();
     }
-   
-    @EventHandler // used in 1.6.2
-    public void postInit(FMLPostInitializationEvent event) {
-            // Stub Method
+    
+    @Mod.EventHandler
+    public void postInit(FMLPostInitializationEvent event){
+    	
     }
 }
