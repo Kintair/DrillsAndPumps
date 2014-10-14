@@ -46,36 +46,175 @@ public class TileEntitySmasher extends TileEntity{
 		return name;
 	}
 	
-	public void drill(World world, int x, int y, int z, float hitX, float hitY, float hitZ){
+	public void drillProc(World world, int x, int y, int z, float hitX, float hitY, float hitZ){
+		drill3(world, 10, x, y, z, hitX, hitY, hitZ);
+	}
+	
+	private void drill1(World world, int depth, int x, int y, int z, float hitX, float hitY, float hitZ){
 		if(hitX == 0){
-			for(int i=1; i<5; i++)
+			for(int i=1; i<depth; i++)
 				if(world.getBlock(x+i, y, z) != Blocks.bedrock)
 					world.func_147480_a(x+i, y, z, true);
 		}
-		if(hitX == 1){
-			for(int i=1; i<5; i++)
+		else if(hitX == 1){
+			for(int i=1; i<depth; i++)
 				if(world.getBlock(x-i, y, z) != Blocks.bedrock)
 					world.func_147480_a(x-i, y, z, true);
 		}
-		if(hitY == 0){
-			for(int i=1; i<5; i++)
+		else if(hitY == 0){
+			for(int i=1; i<depth; i++)
 				if(world.getBlock(x, y+i, z) != Blocks.bedrock)
 					world.func_147480_a(x, y+i, z, true);
 		}
-		if(hitY == 1){
-			for(int i=1; i<5; i++)
+		else if(hitY == 1){
+			for(int i=1; i<depth; i++)
 				if(world.getBlock(x, y-i, z) != Blocks.bedrock)
 					world.func_147480_a(x, y-i, z, true);
 		}
-		if(hitZ == 0){
-			for(int i=1; i<5; i++)
+		else if(hitZ == 0){
+			for(int i=1; i<depth; i++)
 				if(world.getBlock(x, y, z+i) != Blocks.bedrock)
 					world.func_147480_a(x, y, z+i, true);
 		}
-		if(hitZ == 1){
-			for(int i=1; i<5; i++)
+		else if(hitZ == 1){
+			for(int i=1; i<depth; i++)
 				if(world.getBlock(x, y, z-i) != Blocks.bedrock)
 					world.func_147480_a(x, y, z-i, true);
+		}
+	}
+	
+	private void drill3(World world, int depth, int x, int y, int z, float hitX, float hitY, float hitZ){
+		if(hitX == 0){
+			for(int i=1; i<depth; i++){
+				if(world.getBlock(x+i, y, z) != Blocks.bedrock)
+					world.func_147480_a(x+i, y, z, true);
+				if(world.getBlock(x+i, y+1, z) != Blocks.bedrock)
+					world.func_147480_a(x+i, y+1, z, true);
+				if(world.getBlock(x+i, y+1, z+1) != Blocks.bedrock)
+					world.func_147480_a(x+i, y+1, z+1, true);
+				if(world.getBlock(x+i, y, z+1) != Blocks.bedrock)
+					world.func_147480_a(x+i, y, z+1, true);
+				if(world.getBlock(x+i, y-1, z+1) != Blocks.bedrock)
+					world.func_147480_a(x+i, y-1, z+1, true);
+				if(world.getBlock(x+i, y-1, z) != Blocks.bedrock)
+					world.func_147480_a(x+i, y-1, z, true);
+				if(world.getBlock(x+i, y-1, z-1) != Blocks.bedrock)
+					world.func_147480_a(x+i, y-1, z-1, true);
+				if(world.getBlock(x+i, y, z-1) != Blocks.bedrock)
+					world.func_147480_a(x+i, y, z-1, true);
+				if(world.getBlock(x+i, y+1, z-1) != Blocks.bedrock)
+					world.func_147480_a(x+i, y+1, z-1, true);
+			}
+		}
+		else if(hitX == 1){
+			for(int i=1; i<depth; i++){
+				if(world.getBlock(x-i, y, z) != Blocks.bedrock)
+					world.func_147480_a(x-i, y, z, true);
+				if(world.getBlock(x-i, y+1, z) != Blocks.bedrock)
+					world.func_147480_a(x-i, y+1, z, true);
+				if(world.getBlock(x-i, y+1, z+1) != Blocks.bedrock)
+					world.func_147480_a(x-i, y+1, z+1, true);
+				if(world.getBlock(x-i, y, z+1) != Blocks.bedrock)
+					world.func_147480_a(x-i, y, z+1, true);
+				if(world.getBlock(x-i, y-1, z+1) != Blocks.bedrock)
+					world.func_147480_a(x-i, y-1, z+1, true);
+				if(world.getBlock(x-i, y-1, z) != Blocks.bedrock)
+					world.func_147480_a(x-i, y-1, z, true);
+				if(world.getBlock(x-i, y-1, z-1) != Blocks.bedrock)
+					world.func_147480_a(x-i, y-1, z-1, true);
+				if(world.getBlock(x-i, y, z-1) != Blocks.bedrock)
+					world.func_147480_a(x-i, y, z-1, true);
+				if(world.getBlock(x-i, y+1, z-1) != Blocks.bedrock)
+					world.func_147480_a(x-i, y+1, z-1, true);
+			}
+		}
+		else if(hitY == 0){
+			for(int i=1; i<depth; i++){
+				if(world.getBlock(x, y+i, z) != Blocks.bedrock)
+					world.func_147480_a(x, y+i, z, true);
+				if(world.getBlock(x+1, y+i, z) != Blocks.bedrock)
+					world.func_147480_a(x+1, y+i, z, true);
+				if(world.getBlock(x+1, y+i, z+1) != Blocks.bedrock)
+					world.func_147480_a(x+1, y+i, z+1, true);
+				if(world.getBlock(x, y+i, z+1) != Blocks.bedrock)
+					world.func_147480_a(x, y+i, z+1, true);
+				if(world.getBlock(x-1, y+i, z+1) != Blocks.bedrock)
+					world.func_147480_a(x-1, y+i, z+1, true);
+				if(world.getBlock(x-1, y+i, z) != Blocks.bedrock)
+					world.func_147480_a(x-1, y+i, z, true);
+				if(world.getBlock(x-1, y+i, z-1) != Blocks.bedrock)
+					world.func_147480_a(x-1, y+i, z-1, true);
+				if(world.getBlock(x, y+i, z-1) != Blocks.bedrock)
+					world.func_147480_a(x, y+i, z-1, true);
+				if(world.getBlock(x+1, y+i, z-1) != Blocks.bedrock)
+					world.func_147480_a(x+1, y+i, z-1, true);
+			}
+		}
+		else if(hitY == 1){
+			for(int i=1; i<depth; i++){
+				if(world.getBlock(x, y-i, z) != Blocks.bedrock)
+					world.func_147480_a(x, y-i, z, true);
+				if(world.getBlock(x+1, y-i, z) != Blocks.bedrock)
+					world.func_147480_a(x+1, y-i, z, true);
+				if(world.getBlock(x+1, y-i, z+1) != Blocks.bedrock)
+					world.func_147480_a(x+1, y-i, z+1, true);
+				if(world.getBlock(x, y-i, z+1) != Blocks.bedrock)
+					world.func_147480_a(x, y-i, z+1, true);
+				if(world.getBlock(x-1, y-i, z+1) != Blocks.bedrock)
+					world.func_147480_a(x-1, y-i, z+1, true);
+				if(world.getBlock(x-1, y-i, z) != Blocks.bedrock)
+					world.func_147480_a(x-1, y-i, z, true);
+				if(world.getBlock(x-1, y-i, z-1) != Blocks.bedrock)
+					world.func_147480_a(x-1, y-i, z-1, true);
+				if(world.getBlock(x, y-i, z-1) != Blocks.bedrock)
+					world.func_147480_a(x, y-i, z-1, true);
+				if(world.getBlock(x+1, y-i, z-1) != Blocks.bedrock)
+					world.func_147480_a(x+1, y-i, z-1, true);
+			}
+		}
+		else if(hitZ == 0){
+			for(int i=1; i<depth; i++){
+				if(world.getBlock(x, y, z+i) != Blocks.bedrock)
+					world.func_147480_a(x, y, z+i, true);
+				if(world.getBlock(x+1, y, z+i) != Blocks.bedrock)
+					world.func_147480_a(x+1, y, z+i, true);
+				if(world.getBlock(x+1, y+1, z+i) != Blocks.bedrock)
+					world.func_147480_a(x+1, y+1, z+i, true);
+				if(world.getBlock(x, y+1, z+i) != Blocks.bedrock)
+					world.func_147480_a(x, y+1, z+i, true);
+				if(world.getBlock(x-1, y+1, z+i) != Blocks.bedrock)
+					world.func_147480_a(x-1, y+1, z+i, true);
+				if(world.getBlock(x-1, y, z+i) != Blocks.bedrock)
+					world.func_147480_a(x-1, y, z+i, true);
+				if(world.getBlock(x-1, y-1, z+i) != Blocks.bedrock)
+					world.func_147480_a(x-1, y-1, z+i, true);
+				if(world.getBlock(x, y-1, z+i) != Blocks.bedrock)
+					world.func_147480_a(x, y-1, z+i, true);
+				if(world.getBlock(x+1, y-1, z+i) != Blocks.bedrock)
+					world.func_147480_a(x+1, y-1, z+i, true);
+			}
+		}
+		else if(hitZ == 1){
+			for(int i=1; i<depth; i++){
+				if(world.getBlock(x, y, z-i) != Blocks.bedrock)
+					world.func_147480_a(x, y, z-i, true);
+				if(world.getBlock(x+1, y, z-i) != Blocks.bedrock)
+					world.func_147480_a(x+1, y, z-i, true);
+				if(world.getBlock(x+1, y+1, z-i) != Blocks.bedrock)
+					world.func_147480_a(x+1, y+1, z-i, true);
+				if(world.getBlock(x, y+1, z-i) != Blocks.bedrock)
+					world.func_147480_a(x, y+1, z-i, true);
+				if(world.getBlock(x-1, y+1, z-i) != Blocks.bedrock)
+					world.func_147480_a(x-1, y+1, z-i, true);
+				if(world.getBlock(x-1, y, z-i) != Blocks.bedrock)
+					world.func_147480_a(x-1, y, z-i, true);
+				if(world.getBlock(x-1, y-1, z-i) != Blocks.bedrock)
+					world.func_147480_a(x-1, y-1, z-i, true);
+				if(world.getBlock(x, y-1, z-i) != Blocks.bedrock)
+					world.func_147480_a(x, y-1, z-i, true);
+				if(world.getBlock(x+1, y-1, z-i) != Blocks.bedrock)
+					world.func_147480_a(x+1, y-1, z-i, true);
+			}
 		}
 	}
 	
