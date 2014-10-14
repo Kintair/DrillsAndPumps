@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -31,4 +32,10 @@ public class Smasher extends Block implements ITileEntityProvider{
     public boolean hasTileEntity(int metadata){
     	return true;
     }
+    
+	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float hitX, float hitY, float hitZ){
+		world.func_147480_a(x, y, z, true);
+		return true;
+	}
 }
