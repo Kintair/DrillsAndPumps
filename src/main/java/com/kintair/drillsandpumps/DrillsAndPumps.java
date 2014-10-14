@@ -4,6 +4,7 @@ import com.kintair.drillsandpumps.blocks.ModBlocks;
 import com.kintair.drillsandpumps.lib.Constants;
 import com.kintair.drillsandpumps.proxy.CommonProxy;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -20,6 +21,7 @@ public class DrillsAndPumps {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event){
     	ModBlocks.init();
+    	//FMLCommonHandler.instance().bus().register(new SkcEvent());
     }
     
     @Mod.EventHandler
