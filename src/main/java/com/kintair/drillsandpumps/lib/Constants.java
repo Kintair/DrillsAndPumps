@@ -1,5 +1,6 @@
 package com.kintair.drillsandpumps.lib;
 
+//Class for constants. Reduces mismatch errors. Allows for "Change once and done".
 public class Constants {
 	public static final String MODID = "DrillsAndPumps";
     public static final String MODNAME = "Drills and Pumps";

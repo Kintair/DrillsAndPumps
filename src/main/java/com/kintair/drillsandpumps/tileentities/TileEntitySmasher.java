@@ -12,8 +12,9 @@ import net.minecraft.world.World;
 
 import com.kintair.drillsandpumps.DrillsAndPumps;
 
+//Tile entity for the "smasher" block. Will be updated to proper name later.
 public class TileEntitySmasher extends TileEntity{
-	int tick = 1;
+	//int tick = 0; //Part of Tutorial, unused at the moment, may toy with it later.
 	public static final String publicName = "tileEntitySmasher";
 	private String name = "tileEntitySmasher";
 	private ItemStack[] inv;
@@ -22,6 +23,7 @@ public class TileEntitySmasher extends TileEntity{
 		
 	}
 	
+	//Necessary functions, not doing much now but may get more complex once inventories are implemented
 	public void readFromNBT(NBTTagCompound nbt){
 		super.readFromNBT(nbt);
 	}
@@ -30,6 +32,7 @@ public class TileEntitySmasher extends TileEntity{
 		super.writeToNBT(nbt);
 	}
 	
+	//Functions for saving/loading info to/from server. Since no information is stored, no need for them yet. Will need to figure them out as part of implementing inventories.
 //	@Override
 //	public Packet getDescriptionPacket(){
 //		NBTTagCompound titleTag = new NBTTagCompound();
@@ -46,10 +49,12 @@ public class TileEntitySmasher extends TileEntity{
 		return name;
 	}
 	
+	//Function for starting the drill. Temporary. UI will take over its job once implemented
 	public void drillProc(World world, int x, int y, int z, float hitX, float hitY, float hitZ){
-		drill3(world, 10, x, y, z, hitX, hitY, hitZ);
+		drill3(world, 10, x, y, z, hitX, hitY, hitZ); //Manually calling either drill1 or drill3, UI will allow choice between the two.
 	}
 	
+	//Drills a 1x1 hole in a single direction. May need to be refactored once UI implemented
 	private void drill1(World world, int depth, int x, int y, int z, float hitX, float hitY, float hitZ){
 		if(hitX == 0){
 			for(int i=1; i<depth; i++)
@@ -83,6 +88,7 @@ public class TileEntitySmasher extends TileEntity{
 		}
 	}
 	
+	//Drills a 3x3 hole in the direction opposite the side right clicked. May also need to be refactored later.
 	private void drill3(World world, int depth, int x, int y, int z, float hitX, float hitY, float hitZ){
 		if(hitX == 0){
 			for(int i=1; i<depth; i++){
