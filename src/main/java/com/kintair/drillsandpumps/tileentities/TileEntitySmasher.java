@@ -14,7 +14,7 @@ import com.kintair.drillsandpumps.DrillsAndPumps;
 
 //Tile entity for the "smasher" block. Will be updated to proper name later.
 public class TileEntitySmasher extends TileEntity{
-	//int tick = 0; //Part of Tutorial, unused at the moment, may toy with it later.
+	int tick = 0; //Part of Tutorial, unused at the moment, may toy with it later.
 	public static final String publicName = "tileEntitySmasher";
 	private String name = "tileEntitySmasher";
 	private ItemStack[] inv;
@@ -49,9 +49,25 @@ public class TileEntitySmasher extends TileEntity{
 		return name;
 	}
 	
+	//For things that do stuff automatically, once placed.
+/*	@Override
+	public void updateEntity()
+	{
+		if(!worldObj.isRemote)
+		{
+			if(tick < 20)
+			{
+				tick++;
+				if(tick >= 20)
+					System.out.println(tick);
+			}
+		}
+	}*/
+	
 	//Function for starting the drill. Temporary. UI will take over its job once implemented
-	public void drillProc(World world, int x, int y, int z, float hitX, float hitY, float hitZ){
-		drill3(world, 10, x, y, z, hitX, hitY, hitZ); //Manually calling either drill1 or drill3, UI will allow choice between the two.
+	public void drillProc(World world, int x, int y, int z, float hitX, float hitY, float hitZ)
+	{
+		drill(world, 4, 10, x, y, z, hitX, hitY, hitZ); //Manually calling either drill1 or drill3, UI will allow choice between the two.
 	}
 	
 	//Drills a 1x1 hole in a single direction. May need to be refactored once UI implemented
@@ -88,8 +104,8 @@ public class TileEntitySmasher extends TileEntity{
 		}
 	}
 	
-	//Drills a 3x3 hole in the direction opposite the side right clicked. May also need to be refactored later.
-	private void drill3(World world, int depth, int x, int y, int z, float hitX, float hitY, float hitZ){
+	//Drills a 3x3 hole in the direction opposite the side right clicked. Depreciated. May revert if catch-all is too intense.
+/*	private void drill3(World world, int depth, int x, int y, int z, float hitX, float hitY, float hitZ){
 		if(hitX == 0){
 			for(int i=1; i<depth; i++){
 				if(world.getBlock(x+i, y, z) != Blocks.bedrock)
@@ -222,6 +238,168 @@ public class TileEntitySmasher extends TileEntity{
 					world.func_147480_a(x+1, y-1, z-i, true);
 			}
 		}
+	}*/
+	
+	//Drilling holes of varied width as well as depth.
+	private void drill(World world, int width, int depth, int x, int y, int z, float hitX, float hitY, float hitZ){
+		if(hitX == 0)
+		{
+			for(int i=1; i<depth+1; i++)
+			{
+				breakBlock(world, x+i, y, z);
+				for(int j=1; j<width; j++)
+				{
+					for(int k=j; k>-j; k--)
+					{
+						breakBlock(world, x+i, y+j, z+k);
+					}
+					for(int k=j; k>-j; k--)
+					{
+						breakBlock(world, x+i, y+k, z-j);
+					}
+					for(int k=-j; k<j; k++)
+					{
+						breakBlock(world, x+i, y-j, z+k);
+					}
+					for(int k=-j; k<j; k++)
+					{
+						breakBlock(world, x+i, y+k, z+j);
+					}
+				}
+			}
+		}
+		else if(hitX == 1){
+			for(int i=1; i<depth+1; i++)
+			{
+				breakBlock(world, x-i, y, z);
+				for(int j=1; j<width; j++)
+				{
+					for(int k=j; k>-j; k--)
+					{
+						breakBlock(world, x-i, y+j, z+k);
+					}
+					for(int k=j; k>-j; k--)
+					{
+						breakBlock(world, x-i, y+k, z-j);
+					}
+					for(int k=-j; k<j; k++)
+					{
+						breakBlock(world, x-i, y-j, z+k);
+					}
+					for(int k=-j; k<j; k++)
+					{
+						breakBlock(world, x-i, y+k, z+j);
+					}
+				}
+			}
+		}
+		else if(hitY == 0){
+			for(int i=1; i<depth+1; i++)
+			{
+				breakBlock(world, x, y+i, z);
+				for(int j=1; j<width; j++)
+				{
+					for(int k=j; k>-j; k--)
+					{
+						breakBlock(world, x+j, y+i, z+k);
+					}
+					for(int k=j; k>-j; k--)
+					{
+						breakBlock(world, x+k, y+i, z-j);
+					}
+					for(int k=-j; k<j; k++)
+					{
+						breakBlock(world, x-j, y+i, z+k);
+					}
+					for(int k=-j; k<j; k++)
+					{
+						breakBlock(world, x+k, y+i, z+j);
+					}
+				}
+			}
+		}
+		else if(hitY == 1){
+			for(int i=1; i<depth+1; i++)
+			{
+				breakBlock(world, x, y-i, z);
+				for(int j=1; j<width; j++)
+				{
+					for(int k=j; k>-j; k--)
+					{
+						breakBlock(world, x+j, y-i, z+k);
+					}
+					for(int k=j; k>-j; k--)
+					{
+						breakBlock(world, x+k, y-i, z-j);
+					}
+					for(int k=-j; k<j; k++)
+					{
+						breakBlock(world, x-j, y-i, z+k);
+					}
+					for(int k=-j; k<j; k++)
+					{
+						breakBlock(world, x+k, y-i, z+j);
+					}
+				}
+			}
+		}
+		else if(hitZ == 0){
+			for(int i=1; i<depth+1; i++)
+			{
+				breakBlock(world, x, y, z+i);
+				for(int j=1; j<width; j++)
+				{
+					for(int k=j; k>-j; k--)
+					{
+						breakBlock(world, x+j, y+k, z+i);
+					}
+					for(int k=j; k>-j; k--)
+					{
+						breakBlock(world, x+k, y-j, z+i);
+					}
+					for(int k=-j; k<j; k++)
+					{
+						breakBlock(world, x-j, y+k, z+i);
+					}
+					for(int k=-j; k<j; k++)
+					{
+						breakBlock(world, x+k, y+j, z+i);
+					}
+				}
+			}
+		}
+		else if(hitZ == 1){
+			for(int i=1; i<depth+1; i++)
+			{
+				breakBlock(world, x, y, z-i);
+				for(int j=1; j<width; j++)
+				{
+					for(int k=j; k>-j; k--)
+					{
+						breakBlock(world, x+j, y+k, z-i);
+					}
+					for(int k=j; k>-j; k--)
+					{
+						breakBlock(world, x+k, y-j, z-i);
+					}
+					for(int k=-j; k<j; k++)
+					{
+						breakBlock(world, x-j, y+k, z-i);
+					}
+					for(int k=-j; k<j; k++)
+					{
+						breakBlock(world, x+k, y+j, z-i);
+					}
+				}
+			}
+		}
 	}
 	
+	private void breakBlock(World world, int x,int y,int z)
+	{
+		if(world.getBlock(x, y, z) != Blocks.bedrock)
+			world.func_147480_a(x, y, z, false);
+	}
 }
+
+

@@ -19,8 +19,9 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 //Main Modfile
 public class DrillsAndPumps {
 	
-	@Instance (Constants.MODID)
-	public static GuiBasic instance;
+	//Throwing an error. Possibly because not fully implemented?
+	//@Instance (Constants.MODID)
+	//public static GuiBasic instance;
 	
 	//Proxy declarations, for server/client communication
 	@SidedProxy(clientSide = Constants.CLIENT_PROXY_CLASS, serverSide = Constants.SERVER_PROXY_CLASS)
@@ -36,7 +37,7 @@ public class DrillsAndPumps {
     @Mod.EventHandler
     public void init(FMLInitializationEvent event){
     	proxy.registerTileEntities();
-    	NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
+    	//NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy); //Throwing an error, perhaps because not fully implemented.
     }
     
     @Mod.EventHandler

@@ -14,6 +14,7 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileEntitySmasher.class, TileEntitySmasher.publicName);
 	}
 	
+	//Couple GUI functions, not sure how to use them
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z){
 		return null;
