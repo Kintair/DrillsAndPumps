@@ -70,8 +70,8 @@ public class TileEntitySmasher extends TileEntity{
 		drill(world, 4, 10, x, y, z, hitX, hitY, hitZ); //Manually calling either drill1 or drill3, UI will allow choice between the two.
 	}
 	
-	//Drills a 1x1 hole in a single direction. May need to be refactored once UI implemented
-	private void drill1(World world, int depth, int x, int y, int z, float hitX, float hitY, float hitZ){
+	//Drills a 1x1 hole in a single direction. Depreciated. May be re-introduced if performance suffers.
+/*	private void drill1(World world, int depth, int x, int y, int z, float hitX, float hitY, float hitZ){
 		if(hitX == 0){
 			for(int i=1; i<depth; i++)
 				if(world.getBlock(x+i, y, z) != Blocks.bedrock)
@@ -102,7 +102,7 @@ public class TileEntitySmasher extends TileEntity{
 				if(world.getBlock(x, y, z-i) != Blocks.bedrock)
 					world.func_147480_a(x, y, z-i, true);
 		}
-	}
+	}*/
 	
 	//Drills a 3x3 hole in the direction opposite the side right clicked. Depreciated. May revert if catch-all is too intense.
 /*	private void drill3(World world, int depth, int x, int y, int z, float hitX, float hitY, float hitZ){
