@@ -13,11 +13,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 //Second tutorial block, with added functionality. To be converted/renamed later.
-public class Smasher extends BlockContainer{
+public class Smasher extends BlockContainer
+{
 	 
     private String name = "smasher";
  
-    public Smasher() {
+    public Smasher()
+    {
  
         super(Material.rock);
         setBlockName(name);
@@ -27,20 +29,24 @@ public class Smasher extends BlockContainer{
     
     //Creates a Tile Entity associated with this block
     @Override
-    public TileEntity createNewTileEntity(World world, int meta){
+    public TileEntity createNewTileEntity(World world, int meta)
+    {
     	return new TileEntitySmasher();
     }
     
     //A necessary function used somewhere in the depths of Forge or Minecraft
     @Override
-    public boolean hasTileEntity(int metadata){
+    public boolean hasTileEntity(int metadata)
+    {
     	return true;
     }
     
     //Function for when a block is right-clicked. Currently activates the drill starting from side opposite the side clicked.
 	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float hitX, float hitY, float hitZ){
-		if(!world.isRemote){
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float hitX, float hitY, float hitZ)
+	{
+		if(!world.isRemote)
+		{
 			TileEntitySmasher s = (TileEntitySmasher) world.getTileEntity(x, y, z); //Creates new Tile Entity for the block clicked. Should probably move to an onBlockPlaced function once UI/Inventory are added.
 			s.drillProc( world, x, y, z, hitX, hitY, hitZ); //Starts the drill. Will be done via UI when it's added.
 		}

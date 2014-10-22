@@ -13,39 +13,45 @@ import net.minecraft.world.World;
 import com.kintair.drillsandpumps.DrillsAndPumps;
 
 //Tile entity for the "smasher" block. Will be updated to proper name later.
-public class TileEntitySmasher extends TileEntity{
-	int tick = 0; //Part of Tutorial, unused at the moment, may toy with it later.
+public class TileEntitySmasher extends TileEntity
+{
+	//int tick = 0; //Part of Tutorial, unused at the moment, may toy with it later.
 	public static final String publicName = "tileEntitySmasher";
 	private String name = "tileEntitySmasher";
-	private ItemStack[] inv;
+	//private ItemStack[] inv;
 	
-	public TileEntitySmasher(){
-		
+	public TileEntitySmasher()
+	{
 	}
 	
 	//Necessary functions, not doing much now but may get more complex once inventories are implemented
-	public void readFromNBT(NBTTagCompound nbt){
+	public void readFromNBT(NBTTagCompound nbt)
+	{
 		super.readFromNBT(nbt);
 	}
 	
-	public void writeToNBT(NBTTagCompound nbt){
+	public void writeToNBT(NBTTagCompound nbt)
+	{
 		super.writeToNBT(nbt);
 	}
 	
 	//Functions for saving/loading info to/from server. Since no information is stored, no need for them yet. Will need to figure them out as part of implementing inventories.
 //	@Override
-//	public Packet getDescriptionPacket(){
+//	public Packet getDescriptionPacket()
+//	{
 //		NBTTagCompound titleTag = new NBTTagCompound();
 //		this.writeToNBT(titleTag);
 //		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord,this.zCoord, 0, titleTag);
 //	}
 	
 //	@Override
-//	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt){
+//	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
+//	{
 //		this.readFromNBT(pkt.customParam1);
 //	}
 	
-	public String getName()	{
+	public String getName()
+	{
 		return name;
 	}
 	
@@ -268,7 +274,8 @@ public class TileEntitySmasher extends TileEntity{
 				}
 			}
 		}
-		else if(hitX == 1){
+		else if(hitX == 1)
+		{
 			for(int i=1; i<depth+1; i++)
 			{
 				breakBlock(world, x-i, y, z);
@@ -293,7 +300,8 @@ public class TileEntitySmasher extends TileEntity{
 				}
 			}
 		}
-		else if(hitY == 0){
+		else if(hitY == 0)
+		{
 			for(int i=1; i<depth+1; i++)
 			{
 				breakBlock(world, x, y+i, z);
@@ -318,7 +326,8 @@ public class TileEntitySmasher extends TileEntity{
 				}
 			}
 		}
-		else if(hitY == 1){
+		else if(hitY == 1)
+		{
 			for(int i=1; i<depth+1; i++)
 			{
 				breakBlock(world, x, y-i, z);
@@ -343,7 +352,8 @@ public class TileEntitySmasher extends TileEntity{
 				}
 			}
 		}
-		else if(hitZ == 0){
+		else if(hitZ == 0)
+		{
 			for(int i=1; i<depth+1; i++)
 			{
 				breakBlock(world, x, y, z+i);
@@ -368,7 +378,8 @@ public class TileEntitySmasher extends TileEntity{
 				}
 			}
 		}
-		else if(hitZ == 1){
+		else if(hitZ == 1)
+		{
 			for(int i=1; i<depth+1; i++)
 			{
 				breakBlock(world, x, y, z-i);
