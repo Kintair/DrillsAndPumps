@@ -395,9 +395,10 @@ public class TileEntitySmasher extends TileEntity{
 		}
 	}
 	
+	//Function for breaking a block, if not bedrock or a liquid. Todo: add a way to implement custom blacklisting.
 	private void breakBlock(World world, int x,int y,int z)
 	{
-		if(world.getBlock(x, y, z) != Blocks.bedrock)
+		if(world.getBlock(x, y, z) != Blocks.bedrock && !world.getBlock(x, y, z).getMaterial().isLiquid())
 			world.func_147480_a(x, y, z, false);
 	}
 }
