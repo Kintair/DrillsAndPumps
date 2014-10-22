@@ -7,10 +7,12 @@ public final class ModBlocks {
 	//Declaring the blocks
 	public static Block orangeBlock;
 	public static Block smasher;
+	public static Block pump;
 	
 	//Initializing the blocks
 	public static void init(){
 		orangeBlock = new OrangeBlock();
 		smasher = new Smasher();
+		pump = new Pump();
 	}
 }
